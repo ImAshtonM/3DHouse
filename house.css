@@ -1,0 +1,575 @@
+:root {
+    --boxColor: #0ff7;
+    --buildingColor1: #646161;
+    --buildingColor1Dark: #555555;
+    --buildingColor1Darker: #535353;
+    --windowColor1: #91fff816;
+    --doorHandleColor1: #9c9c9c;
+    --daytime: 
+        radial-gradient(closest-side,#f6ff00a3, transparent),
+        linear-gradient(180deg, #00bbff, #0080ff, #00bbff);
+    --nighttime: 
+        radial-gradient(closest-side, #ffffffa4, transparent, transparent, #00000092),
+        linear-gradient(180deg, #1b1b1b, #000000, #1b1b1b);
+    --sideWalkColor: #1e1e1e;
+    --groundColor: #0e0e0e;
+    --Height: 2em;
+    --Width: 2em;
+    --Depth: 2em;
+    --blockDepth: 0.5em; /* sets width of ind. blocks that build wall  */
+    --roofPitch: 51.5deg;
+    --sidingHeight: 0.25em;
+    --sidingDepth: .125em;
+    --sidingColor: #78caed;
+}
+
+
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 75px;
+    box-sizing: border-box;
+}
+
+.hero {
+    perspective: 12em;
+    perspective-origin: 50% calc(50% - 2em);
+}
+
+.daytime {
+    background: var(--daytime);
+}
+
+.nighttime {
+    background: var(--nighttime);
+}
+
+
+.scene,
+.floor,
+.house,
+.frontOfHouse,
+.backOfHouse,
+.leftSideOfHouse,
+.rightSideOfHouse,
+.roof,
+.siding,
+.twoWindowWithEntrance,
+.threeWindowNoEntrance,
+.largeWindow3PaneSmall,
+.highWindowSmall,
+.block {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+
+.floor {
+    position: absolute;
+    top: 1em;
+    transform: 
+        translate(-50%, -50%)
+        rotateX(90deg);
+    width: 250em;
+    height: 250em;
+    background: 
+        radial-gradient(#0000, #000 75%),
+        var(--groundColor);
+    background-size:100%, 1em 1em;
+
+}
+
+.block {
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: translate3d(calc(var(--x, 4) * 1vmin ), calc(var(--y, 5) * 1vmin), calc(var(--z, 0) * 1vmin)) rotateX(calc(var(--rotate-cuboid-x, 0) * 1deg)) rotateY(calc(var(--rotate-cuboid-y, 0) * 1deg)) rotateZ(calc(var(--rotate-cuboid-z, 0) * 1deg));
+}
+
+
+/* Dimensions for each block type */
+.tallColumn {
+    --Height: 3em;
+    --Width: 0.258em;
+    --Depth: var(--blockDepth);
+}
+
+.tallPillar {
+    --Height: 3em;
+    --Width: 0.5em;
+    --Depth: var(--blockDepth);
+}
+
+.wideBlock {
+    --Height: 0.5em;
+    --Width: 3em;
+    --Depth: var(--blockDepth);
+}
+
+.wideRow {
+    --Height: 0.25em;
+    --Width: 3em;
+    --Depth: var(--blockDepth);
+}
+
+.mediumWideBlock {
+    --Height: 0.5em;
+    --Width: 1.5em;
+    --Depth: var(--blockDepth);
+}
+
+.windowPane {
+    --Height: 1em;
+    --Width: 0.757em;
+    --Depth: calc(var(--blockDepth) / 5);
+}
+
+.verticalWindowTrim {
+    --Height: 2em;
+    --Width: 2px;
+    --Depth: calc(var(--blockDepth) * 0.75);
+}
+
+.horizontalWindowTrim {
+    --Height: 2px;
+    --Width: 1.5em;
+    --Depth: calc(var(--blockDepth) * 0.75);
+}
+
+.frontEntranceWindowPane {
+    --Height: 1.5em;
+    --Width: 0.5em;
+    --Depth: calc(var(--blockDepth) / 2);
+}
+
+.frontEntranceWindowTrim {
+    --Height: 0.25em;
+    --Width: 0.5em;
+    --Depth: var(--blockDepth);
+}
+
+.door {
+    --Height: 2em;
+    --Width: 1em;
+    --Depth: calc(var(--blockDepth) / 2);
+}
+
+.doorHandlePlate {
+    --Height: 0.5em;
+    --Width: 0.125em;
+    --Depth: 1px;
+}
+
+.doorHandle {
+    --Height: 0.125em;
+    --Width: 0.125em;
+    --Depth: 0.125em;
+}
+
+.frontEntranceTop {
+    --Height: 1em;
+    --Width: 2em;
+    --Depth: calc(var(--blockDepth) / 2);
+}
+
+.mediumBlock {
+    --Height: 1em;
+    --Width: 1em;
+    --Depth: calc(var(--blockDepth) / 2);
+}
+
+.largeSideOfRoof {
+    --Height: 3.75em;
+    --Width: 8em;
+    --Depth: calc(var(--blockDepth) / 4); 
+}
+
+.smallSideOfRoof {
+    --Height: 2em;
+    --Width: 5em;
+    --Depth: var(--blockDepth);
+    --slope: 3.25em;
+}
+
+.side {
+    position: absolute;
+    background: var(--buildingColor1);
+    backface-visibility: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5% 2.5%;
+    flex-wrap: wrap;
+    box-shadow: 0 0 1.5em #000a inset;
+}
+
+.front,
+.back {
+    --coefficient: 0.5;
+    height: var(--Height);
+    width: var(--Width);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) translate3d(0, 0, calc(var(--Depth) * var(--coefficient)));
+}
+
+.front {
+    background: linear-gradient(45deg, 0% transparent, 40% transparent, 50% #ffffff98, 60% transparent, 100% transparent);
+}
+
+.back {
+    --coefficient: -0.5;
+}
+
+.wide > .front {
+    --coefficent: -0.5;
+}
+
+.wide > .back {
+    --coefficent: 0.5;
+}
+
+.left,
+.right {
+    --rotation: -90deg;
+    height: var(--Height);
+    width: var(--Depth);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateY(var(--rotation)) translate3d(0, 0, calc(var(--Width) * 0.5));
+}
+
+.right {
+    --rotation: 90deg
+}
+
+.top,
+.bottom {
+    --rotation: 90deg;
+    height: var(--Depth);
+    width: var(--Width);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotateX(var(--rotation)) translate3d(0, 0, calc(var(--Height) * 0.5)) ;
+}
+
+.bottom {
+    --rotation: -90deg;
+}
+
+.windowPane > .side,
+.frontEntranceWindowPane > .side {
+    background: var(--windowColor1);
+}
+
+.doorHandlePlate > .side {
+    background: #000;
+}
+
+.doorHandle > .side {
+    background: #d1d1d1;
+}
+
+/* 8em wide side */
+.twoWindowWithEntrance {
+
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-3.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(-3.25em, -.5em, 0);
+    } 
+    .tallPillar:nth-child(3) {
+        transform: translate3d(-1.25em, -.5em, 0);
+    } 
+    .tallPillar:nth-child(4) {
+        transform: translate3d(1.25em, -.5em, 0);
+    } 
+    .tallPillar:nth-child(5) {
+        transform: translate3d(3.25em, -.5em, 0);
+    } 
+    .tallPillar:nth-child(6) {
+        transform: translate3d(3.75em, -.5em, 0);
+    } 
+    .mediumWideBlock:nth-child(7) {
+        transform: translate3d(-2.25em, -1.75em, 0);
+    }
+    .mediumWideBlock:nth-child(8) {
+        transform: translate3d(-2.25em, .75em, 0);
+    }
+    .mediumWideBlock:nth-child(9) {
+        transform: translate3d(2.25em, -1.75em, 0);
+    }
+    .mediumWideBlock:nth-child(10) {
+        transform: translate3d(2.25em, 0.75em, 0);
+    }
+    .windowPane:nth-child(11) {
+        transform: translate3d(-2.625em, -1em, 0);
+    }
+    .windowPane:nth-child(12) {
+        transform: translate3d(-2.625em, 0, 0);
+    }
+    .windowPane:nth-child(13) {
+        transform: translate3d(-1.875em, -1em, 0);
+    }
+    .windowPane:nth-child(14) {
+        transform: translate3d(-1.875em, 0, 0);
+    }
+    .windowPane:nth-child(15) {
+        transform: translate3d(1.875em, -1em, 0);
+    }
+    .windowPane:nth-child(16) {
+        transform: translate3d(1.875em, 0, 0);
+    }
+    .windowPane:nth-child(17) {
+        transform: translate3d(2.625em, -1em, 0);
+    }
+    .windowPane:nth-child(18) {
+        transform: translate3d(2.625em, 0, 0);
+    }
+    .frontEntranceWindowPane:nth-child(19) {
+        transform: translate3d(-.75em, 0em, 0);
+    }
+    .frontEntranceWindowPane:nth-child(20) {
+        transform: translate3d(.75em, 0em, 0);
+    }
+    .frontEntranceWindowTrim:nth-child(21) {
+        transform: translate3d(-.75em, -.875em, 0);
+    }
+    .frontEntranceWindowTrim:nth-child(22) {
+        transform: translate3d(-.75em, 0.875em, 0);
+    }
+    .frontEntranceWindowTrim:nth-child(23) {
+        transform: translate3d(.75em, -0.875em, 0);
+    }
+    .frontEntranceWindowTrim:nth-child(24) {
+        transform: translate3d(.75em, 0.875em, 0);
+    }
+    .door:nth-child(25) {
+        transform: translate3d(0, 0, 0);
+    }
+    .doorHandlePlate:nth-child(26) {
+        transform: translate3d(.375em, 0, .25em);
+    }
+    .doorHandle:nth-child(27) {
+        transform: translate3d(.375em, 0, .25em);
+    }
+    .frontEntranceTop:nth-child(28) {
+        transform: translate3d( 0, -1.5em, .25em);
+    }
+}
+/* 8em wide side */
+.threeWindowNoEntrance {
+
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-3.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(-3.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(3) {
+        transform: translate3d(-1.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(4) {
+        transform: translate3d(1.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(5) {
+        transform: translate3d(3.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(6) {
+        transform: translate3d(3.75em, -.5em, 0);
+    }
+    .tallColumn:nth-child(7) {
+        transform: translate3d(-.875em, -.5em, 0);
+    }
+    .tallColumn:nth-child(8) {
+        transform: translate3d(.875em, -.5em, 0);
+    }
+    .mediumWideBlock:nth-child(9) {
+        transform: translate3d(-2.25em, -1.75em, 0);
+    }
+    .mediumWideBlock:nth-child(10) {
+        transform: translate3d(-2.25em, .75em, 0);
+    }
+    .mediumWideBlock:nth-child(11) {
+       transform: translate3d(0, -1.75em, 0);
+    }
+    .mediumWideBlock:nth-child(12) {
+        transform: translate3d(0, 0.75em, 0);
+    }
+    .mediumWideBlock:nth-child(13) {
+        transform: translate3d(2.25em, .75em, 0);
+    }
+    .mediumWideBlock:nth-child(14) {
+        transform: translate3d(2.25em, -1.75em, 0);
+    }
+    .windowPane:nth-child(15) {
+        transform: translate3d(-2.625em, -1em, 0);
+    }
+    .windowPane:nth-child(16) {
+        transform: translate3d(-2.625em, 0, 0);
+    }
+    .windowPane:nth-child(17) {
+        transform: translate3d(-1.875em, -1em, 0);
+    }
+    .windowPane:nth-child(18) {
+        transform: translate3d(-1.875em, 0, 0);
+    }
+    .windowPane:nth-child(19) {
+        transform: translate3d(-.375em, -1em, 0);
+    }
+    .windowPane:nth-child(20) {
+        transform: translate3d( 0.375em, -1em, 0);
+    }
+    .windowPane:nth-child(21) {
+        transform: translate3d(-.375em, 0, 0);
+    }
+    .windowPane:nth-child(22) {
+        transform: translate3d( 0.375em, 0, 0);
+    }
+    .windowPane:nth-child(23) {
+        transform: translate3d(1.875em, -1em, 0);
+    }
+    .windowPane:nth-child(24) {
+        transform: translate3d(1.875em, 0, 0);
+    }
+    .windowPane:nth-child(25) {
+        transform: translate3d(2.625em, -1em, 0);
+    }
+    .windowPane:nth-child(26) {
+        transform: translate3d(2.625em, 0, 0);
+    }
+}
+/* 4em wide  */
+.largeWindow3PaneSmall {
+
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-1.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(1.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(3) {
+        transform: translate3d(1.75em, -.5em, 0);
+    }
+    .tallColumn:nth-child(4) {
+        transform: translate3d(-1.375em, -.5em, 0);
+    }
+    .block:nth-child(5) {
+        --Height: .5em;
+        --Width: 2.25em;
+        --Depth: var(--blockDepth);
+        transform: translate3d(-.125em, -1.75em, 0);
+    }
+    .block:nth-child(6) {
+        --Height: .5em;
+        --Width: 2.25em;
+        --Depth: var(--blockDepth);
+        transform: translate3d(-.125em, .75em, 0);
+    }
+    .windowPane:nth-child(7) {
+        transform: translate3d(-.875em, -1em, 0);
+    }
+    .windowPane:nth-child(8) {
+        transform: translate3d(-.875em, 0, 0);
+    }
+    .windowPane:nth-child(9) {
+        transform: translate3d(-.125em, -1em, 0);
+    }
+    .windowPane:nth-child(10) {
+        transform: translate3d(-.125em, 0, 0);
+    }
+    .windowPane:nth-child(11) {
+        transform: translate3d(0.625em, -1em, 0);
+    }
+    .windowPane:nth-child(12) {
+        transform: translate3d(0.625em, 0, 0);
+    }
+}
+/* 4em wide side */
+.highWindowSmall {
+    
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-1.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(1.75em, -.5em, 0);
+    }
+    .wideBlock:nth-child(3) {
+        transform: translate3d(0, -1.75em, 0);
+    }
+    .wideBlock:nth-child(4) {
+        transform: translate3d(0, -0.25em, 0);
+    }
+    .wideBlock:nth-child(5) {
+        transform: translate3d(0, 0.25em, 0);
+    }
+    .wideBlock:nth-child(6) {
+        transform: translate3d(0, .75em, 0);
+    }
+    .windowPane:nth-child(7) {
+        transform: translate3d(-1.125em, -1em, 0);
+    }
+    .windowPane:nth-child(8) {
+        transform: translate3d(-.372em, -1em, 0);
+    }
+    .windowPane:nth-child(9) {
+        transform: translate3d(0.372em, -1em, 0);
+    }
+    .windowPane:nth-child(10) {
+        transform: translate3d(1.125em, -1em, 0);
+    }
+}
+.roof {
+    transform: translate3d(0, -3em, 0);
+
+    .largeSideOfRoof:nth-child(1) {
+        transform: translate3d(0, 0.0625em, 1.425em) rotateX(var(--roofPitch));
+        
+    }
+    .largeSideOfRoof:nth-child(2) {
+        transform: rotateY(180deg) translate3d(0, 0.0625em, 1.425em) rotateX(var(--roofPitch));
+        
+    }
+    .smallSideOfRoof:nth-child(3) {
+        transform: rotateY(90deg) translate3d(0, 0, 3.75em);
+    }
+    .smallSideOfRoof:nth-child(4) {
+        transform: rotateY(-90deg) translate3d(0, 0, 3.75em);
+    }
+
+    .smallSideOfRoof .front,
+    .smallSideOfRoof .back {
+        clip-path: polygon(0 100%, 50% 0, 100% 100%);
+    }
+    .smallSideOfRoof .right {
+        transform: rotateZ(-51.5deg) rotateY(90deg) translate3d(0, -.25em, 1.875em);
+        height: var(--slope);
+    }
+    .smallSideOfRoof .left {
+        transform: rotateZ(51.5deg) rotateY(90deg) translate3d(0, 0.25em, -2.2em);
+        height: var(--slope);
+    }
+
+    .smallSideOfRoof .top {
+        visibility: hidden;
+    }
+}
+
+.frontOfHouse {
+    transform: translate3d(0, 0, 2em);
+}
+
+.backOfHouse {
+    transform: rotateY(180deg) translate3d(0, 0, 2em);
+}
+
+.leftSideOfHouse {
+    transform: rotateY(90deg) translate3d(0, 0, 3.75em);
+}
+
+.rightSideOfHouse {
+    transform: rotateY(90deg) translate3d(0, 0, -3.75em);
+}
