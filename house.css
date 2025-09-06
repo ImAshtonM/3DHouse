@@ -58,9 +58,12 @@ body {
 .roof,
 .siding,
 .twoWindowWithEntrance,
+.twoWindowNoEntrance,
 .threeWindowNoEntrance,
 .largeWindow3PaneSmall,
 .highWindowSmall,
+.noWindowNoEntrance,
+.garage,
 .block {
     position: relative;
     transform-style: preserve-3d;
@@ -361,6 +364,76 @@ body {
     }
 }
 /* 8em wide side */
+.twoWindowNoEntrance {
+
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-3.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(-3.25em, -.5em, 0);
+    } 
+    .tallPillar:nth-child(3) {
+        transform: translate3d(-1.25em, -.5em, 0);
+    } 
+    .tallPillar:nth-child(4) {
+        transform: translate3d(1.25em, -.5em, 0);
+    } 
+    .tallPillar:nth-child(5) {
+        transform: translate3d(3.25em, -.5em, 0);
+    } 
+    .tallPillar:nth-child(6) {
+        transform: translate3d(3.75em, -.5em, 0);
+    } 
+    .tallPillar:nth-child(7) {
+        transform: translate3d(-.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(8) {
+        transform: translate3d(-.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(9) {
+        transform: translate3d(.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(10) {
+        transform: translate3d(.75em, -.5em, 0);
+    }
+    .mediumWideBlock:nth-child(11) {
+        transform: translate3d(-2.25em, -1.75em, 0);
+    }
+    .mediumWideBlock:nth-child(12) {
+        transform: translate3d(-2.25em, .75em, 0);
+    }
+    .mediumWideBlock:nth-child(13) {
+        transform: translate3d(2.25em, -1.75em, 0);
+    }
+    .mediumWideBlock:nth-child(14) {
+        transform: translate3d(2.25em, 0.75em, 0);
+    }
+    .windowPane:nth-child(15) {
+        transform: translate3d(-2.625em, -1em, 0);
+    }
+    .windowPane:nth-child(16) {
+        transform: translate3d(-2.625em, 0, 0);
+    }
+    .windowPane:nth-child(17) {
+        transform: translate3d(-1.875em, -1em, 0);
+    }
+    .windowPane:nth-child(18) {
+        transform: translate3d(-1.875em, 0, 0);
+    }
+    .windowPane:nth-child(19) {
+        transform: translate3d(1.875em, -1em, 0);
+    }
+    .windowPane:nth-child(20) {
+        transform: translate3d(1.875em, 0, 0);
+    }
+    .windowPane:nth-child(21) {
+        transform: translate3d(2.625em, -1em, 0);
+    }
+    .windowPane:nth-child(22) {
+        transform: translate3d(2.625em, 0, 0);
+    }
+}
+/* 8em wide side */
 .threeWindowNoEntrance {
 
     .tallPillar:nth-child(1) {
@@ -560,6 +633,12 @@ body {
 
 .frontOfHouse {
     transform: translate3d(0, 0, 2em);
+     > .twoWindowNoEntrance {
+        transform: translate3d(-4.75em, 0, 0);
+    }
+    > .twoWindowWithEntrance {
+        transform: translate3d(3.25em, 0, 0);
+    }
 }
 
 .backOfHouse {
@@ -571,5 +650,9 @@ body {
 }
 
 .rightSideOfHouse {
-    transform: rotateY(90deg) translate3d(0, 0, -3.75em);
+    transform: rotateY(90deg) translate3d(1.75em, 0, -8.75em);
+}
+
+.hero {
+    perspective: 20em;
 }
