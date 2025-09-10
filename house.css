@@ -95,7 +95,7 @@ body {
 /* Dimensions for each block type */
 .tallColumn {
     --Height: 3em;
-    --Width: 0.258em;
+    --Width: 0.25em; /* Was .258em if a gap occurs */
     --Depth: var(--blockDepth);
 }
 
@@ -194,6 +194,12 @@ body {
     --Width: 5em;
     --Depth: var(--blockDepth);
     --slope: 3.25em;
+}
+
+.garageDoorSection {
+    --Height: .825em;
+    --Width: 3em;
+    --Depth: calc(var(--blockDepth) / 4);
 }
 
 .side {
@@ -595,6 +601,58 @@ body {
         transform: translate3d(1.125em, -1em, 0);
     }
 }
+.noWindowNoEntrance {
+    
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-1.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(-1.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(3) {
+        transform: translate3d(-0.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(4) {
+        transform: translate3d(-0.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(5) {
+        transform: translate3d(0.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(6) {
+        transform: translate3d(.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(7) {
+        transform: translate3d(1.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(8) {
+        transform: translate3d(1.75em, -.5em, 0);
+    }
+}
+
+.garage {
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-1.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(1.75em, -.5em, 0);
+    }
+    .wideBlock:nth-child(3) {
+        transform: translate3d(0, -1.75em, 0);
+    }
+    .wideRow:nth-child(4) {
+        transform: translate3d(0, -1.5em, 0);
+    }
+    .garageDoorSection:nth-child(5) {
+        transform: translate3d(0, -1em, 0);
+    }
+    .garageDoorSection:nth-child(6) {
+        transform: translate3d(0, -.2em, 0);
+    }
+    .garageDoorSection:nth-child(7) {
+        transform: translate3d(0, .6em, 0);
+    }
+}
+
 .roof {
     transform: translate3d(0, -3em, 0);
 
@@ -639,6 +697,9 @@ body {
     > .twoWindowWithEntrance {
         transform: translate3d(3.25em, 0, 0);
     }
+    > .garage {
+        transform: translate3d(9.25em, 0, 0)
+    }
 }
 
 .backOfHouse {
@@ -646,7 +707,13 @@ body {
 }
 
 .leftSideOfHouse {
-    transform: rotateY(90deg) translate3d(0, 0, 3.75em);
+    transform: rotateY(90deg) translate3d(1.75em, 0, 11em);
+    .noWindowNoEntrance:nth-of-type(1) {
+        transform: translate3d(-2em, 0, 0)
+    }
+    .noWindowNoEntrance:nth-of-type(2) {
+        transform: translate3d(2em, 0, 0)
+    }
 }
 
 .rightSideOfHouse {
@@ -654,5 +721,9 @@ body {
 }
 
 .hero {
-    perspective: 20em;
+    perspective: 25em;
+}
+
+.scene {
+    transform: translate3d(-2.5em, 0, -5em);
 }
