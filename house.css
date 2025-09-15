@@ -629,6 +629,45 @@ body {
     }
 }
 
+.largeWindow4PaneSmall {
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-1.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(1.75em, -.5em, 0);
+    }
+    .wideBlock:nth-child(3) {
+        transform: translate3d(0, -1.75em, 0);
+    }
+    .wideBlock:nth-child(4) {
+        transform: translate3d(0, .75em, 0);
+    }
+    .windowPane:nth-child(5) {
+        transform: translate3d(-1.125em, -1em, 0);
+    }
+    .windowPane:nth-child(6) {
+        transform: translate3d(-.372em, -1em, 0);
+    }
+    .windowPane:nth-child(7) {
+        transform: translate3d(.372em, -1em, 0);
+    }
+    .windowPane:nth-child(8) {
+        transform: translate3d(1.125em, -1em, 0);
+    }
+    .windowPane:nth-child(9) {
+        transform: translate3d(-1.125em, 0, 0);
+    }
+    .windowPane:nth-child(10) {
+        transform: translate3d(-.372em, 0, 0);
+    }
+    .windowPane:nth-child(11) {
+        transform: translate3d(.372em, 0, 0);
+    }
+    .windowPane:nth-child(12) {
+        transform: translate3d(1.125em, 0, 0);
+    }
+}
+
 .garage {
     .tallPillar:nth-child(1) {
         transform: translate3d(-1.75em, -.5em, 0);
@@ -703,7 +742,25 @@ body {
 }
 
 .backOfHouse {
-    transform: rotateY(180deg) translate3d(0, 0, 2em);
+    transform: rotateY(180deg) translate3d(0, 0, 8em);
+    > .largeWindowSmall {
+        transform: translate3d(-2em, 0, 0);
+    }
+    > .noWindowNoEntrance {
+        transform: translate3d(2.5em, 0, 0);
+    }
+    > .highWindowWithEntranceSmall {
+        transform: translate3d(-4em, 0, 0);
+    }
+    > .largeWindow4PaneSmall {
+        transform: translate3d(-1.75em, 0, 8em);
+    }
+    > .highWindowSmall {
+        transform: translate3d(6.5em, 0, 0);
+    }
+    > .noWindowWithEntrance {
+        transform: translate3d(-8em, 0, 0);
+    }
 }
 
 .leftSideOfHouse {
@@ -721,9 +778,10 @@ body {
 }
 
 .hero {
-    perspective: 25em;
+    perspective: 35em;
 }
 
 .scene {
-    transform: translate3d(-2.5em, 0, -5em);
+    transform: translate3d(2.5em, 0, -25em)
+    rotateY(180deg);
 }
