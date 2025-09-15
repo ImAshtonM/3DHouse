@@ -668,6 +668,46 @@ body {
     }
 }
 
+.noWindowWithEntrance {
+    /* 
+    tallPillar: 6,
+    door: 1,
+    doorHandlePlate: 1,
+    doorHandle: 1,
+    mediumBlock: 1
+     */
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-1.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(-1.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(3) {
+        transform: translate3d(-.75em, -.5em, 0);
+    }
+    .tallPillar:nth-child(4) {
+        transform: translate3d(-.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(5) {
+        transform: translate3d(.25em, -.5em, 0);
+    }
+    .tallPillar:nth-child(6) {
+        transform: translate3d(1.75em, -.5em, 0);
+    }
+    .door:nth-child(7) {
+        transform: translate3d(1em, 0, 0);
+    }
+    .doorHandlePlate:nth-child(8) {
+        transform: translate3d(1.375em, 0, 0);
+    }
+    .doorHandle:nth-child(9) {
+        transform: translate3d(1.375em, 0, 0);
+    }
+    .mediumBlock:nth-child(10) {
+        transform: translate3d(1em, -1.5em, 0);
+    }
+}
+
 .garage {
     .tallPillar:nth-child(1) {
         transform: translate3d(-1.75em, -.5em, 0);
@@ -742,7 +782,7 @@ body {
 }
 
 .backOfHouse {
-    transform: rotateY(180deg) translate3d(0, 0, 8em);
+    transform: rotateY(180deg) translate3d(0, 0, 5.5em);
     > .largeWindowSmall {
         transform: translate3d(-2em, 0, 0);
     }
@@ -758,8 +798,11 @@ body {
     > .highWindowSmall {
         transform: translate3d(6.5em, 0, 0);
     }
+    > .largeWindow3PaneSmall {
+        transform: translate3d(-5em, 0, 0) rotateY(180deg);
+    }
     > .noWindowWithEntrance {
-        transform: translate3d(-8em, 0, 0);
+        transform: translate3d(-9em, 0, 0);
     }
 }
 
@@ -782,6 +825,6 @@ body {
 }
 
 .scene {
-    transform: translate3d(2.5em, 0, -25em)
-    rotateY(180deg);
+    transform: translate3d(2.5em, 0, -15em)
+    rotateY(-135deg);
 }
