@@ -61,8 +61,11 @@ body {
 .twoWindowNoEntrance,
 .threeWindowNoEntrance,
 .largeWindow3PaneSmall,
+.largeWindow4PaneSmall,
 .highWindowSmall,
+.highWindowWithEntranceSmall,
 .noWindowNoEntrance,
+.noWindowWithEntrance,
 .garage,
 .block {
     position: relative;
@@ -362,10 +365,16 @@ body {
     .doorHandlePlate:nth-child(26) {
         transform: translate3d(.375em, 0, .25em);
     }
-    .doorHandle:nth-child(27) {
+    .doorHandlePlate:nth-child(27) {
+        transform: translate3d(.375em, 0, -.25em);
+    }
+    .doorHandle:nth-child(28) {
         transform: translate3d(.375em, 0, .25em);
     }
-    .frontEntranceTop:nth-child(28) {
+    .doorHandle:nth-child(29) {
+        transform: translate3d(.375em, 0, -.25em);
+    }
+    .frontEntranceTop:nth-child(30) {
         transform: translate3d( 0, -1.5em, .25em);
     }
 }
@@ -601,6 +610,56 @@ body {
         transform: translate3d(1.125em, -1em, 0);
     }
 }
+
+.highWindowWithEntranceSmall {
+
+    .tallPillar:nth-child(1) {
+        transform: translate3d(-1.75em, -.5em, 0)
+    }
+    .tallPillar:nth-child(2) {
+        transform: translate3d(.25em, -.5em, 0)
+    }
+    .tallPillar:nth-child(3) {
+        transform: translate3d(1.75em, -.5em, 0)
+    }
+    .mediumWideBlock:nth-child(4) {
+        transform: translate3d(-.75em, .75em, 0)
+    }
+    .mediumWideBlock:nth-child(5) {
+        transform: translate3d(-.75em, .25em, 0)
+    }
+    .mediumWideBlock:nth-child(6) {
+        transform: translate3d(-.75em, -.25em, 0)
+    }
+    .mediumWideBlock:nth-child(7) {
+        transform: translate3d(-.75em, -1.75em, 0)
+    }
+    .windowPane:nth-child(8) {
+        transform: translate3d(-1.125em, -1em, 0)
+    }
+    .windowPane:nth-child(9) {
+        transform: translate3d(-.372em, -1em, 0)
+    }
+    .door:nth-child(10) {
+        transform: translate3d(1em, 0, 0);
+    }
+    .doorHandlePlate:nth-child(11) {
+        transform: translate3d(.75em, 0, .25em);
+    }
+    .doorHandlePlate:nth-child(12) {
+        transform: translate3d(.75em, 0, -.25em);
+    }
+    .doorHandle:nth-child(13) {
+        transform: translate3d(.75em, 0, .25em);
+    }
+    .doorHandle:nth-child(14) {
+        transform: translate3d(.75em, 0, -.25em);
+    }
+    .mediumBlock:nth-child(15) {
+        transform: translate3d(1em, -1.5em, 0);
+    }
+}
+
 .noWindowNoEntrance {
     
     .tallPillar:nth-child(1) {
@@ -669,13 +728,6 @@ body {
 }
 
 .noWindowWithEntrance {
-    /* 
-    tallPillar: 6,
-    door: 1,
-    doorHandlePlate: 1,
-    doorHandle: 1,
-    mediumBlock: 1
-     */
     .tallPillar:nth-child(1) {
         transform: translate3d(-1.75em, -.5em, 0);
     }
@@ -698,10 +750,16 @@ body {
         transform: translate3d(1em, 0, 0);
     }
     .doorHandlePlate:nth-child(8) {
-        transform: translate3d(1.375em, 0, 0);
+        transform: translate3d(1.375em, 0, -.25em);
     }
-    .doorHandle:nth-child(9) {
-        transform: translate3d(1.375em, 0, 0);
+    .doorHandlePlate:nth-child(9) {
+        transform: translate3d(1.375em, 0, -.25em);
+    }
+    .doorHandle:nth-child(10) {
+        transform: translate3d(1.375em, 0, .25em);
+    }
+    .doorHandle:nth-child(11) {
+        transform: translate3d(1.375em, 0, -.25em);
     }
     .mediumBlock:nth-child(10) {
         transform: translate3d(1em, -1.5em, 0);
@@ -783,20 +841,20 @@ body {
 
 .backOfHouse {
     transform: rotateY(180deg) translate3d(0, 0, 5.5em);
-    > .largeWindowSmall {
-        transform: translate3d(-2em, 0, 0);
+    > .highWindowSmall:nth-child(1) {
+        transform: translate3d(6.5em, 0, 0);
     }
     > .noWindowNoEntrance {
         transform: translate3d(2.5em, 0, 0);
     }
     > .highWindowWithEntranceSmall {
-        transform: translate3d(-4em, 0, 0);
+        transform: translate3d(0.25em, 0, 2.25em) rotateY(-90deg) ;
     }
     > .largeWindow4PaneSmall {
-        transform: translate3d(-1.75em, 0, 8em);
+        transform: translate3d(-1.5em, 0, 4em);
     }
-    > .highWindowSmall {
-        transform: translate3d(6.5em, 0, 0);
+    > .highWindowSmall:nth-child(5) {
+        transform: translate3d(-3.25em, 0, 2.25em) rotateY(90deg);
     }
     > .largeWindow3PaneSmall {
         transform: translate3d(-5em, 0, 0) rotateY(180deg);
@@ -825,6 +883,6 @@ body {
 }
 
 .scene {
-    transform: translate3d(2.5em, 0, -15em)
-    rotateY(-135deg);
+    transform: translate3d(0em, 0, -10em)
+    rotateY(0);
 }

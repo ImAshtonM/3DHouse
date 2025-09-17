@@ -6,8 +6,8 @@ let house = {
         frontEntranceWindowPane: 2,
         frontEntranceWindowTrim: 4,
         door: 1,
-        doorHandlePlate: 1,
-        doorHandle: 1,
+        doorHandlePlate: 2,
+        doorHandle: 2,
         frontEntranceTop: 1
     },
     twoWindowNoEntrance: { // 8em wide side
@@ -42,15 +42,15 @@ let house = {
         mediumWideBlock: 4,
         windowPane: 2,
         door: 1,
-        doorHandlePlate: 1,
-        doorHandle: 1,
+        doorHandlePlate: 2,
+        doorHandle: 2,
         mediumBlock: 1
     },
     noWindowWithEntrance: { // 4em wide side
         tallPillar: 6,
         door: 1,
-        doorHandlePlate: 1,
-        doorHandle: 1,
+        doorHandlePlate: 2,
+        doorHandle: 2,
         mediumBlock: 1
     },
     noWindowNoEntrance: { // 4em wide side
